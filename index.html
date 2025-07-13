@@ -8,11 +8,14 @@
 <body>
   <h1>🔬 Laboratório de Mutação Genética</h1>
 
-  <label for="original">DNA Original:</label>
-  <input id="original" type="text" placeholder="Ex: AGCTA">
+  <div class="dna-info">
+    <label> DNA original:</label>
+    <div id="dna-alienigena" class="dna-display"></div>
+    <button onclick="gerarNovoDNA()" class="btn-secondary">🔄 Gerar Novo DNA</button>
+  </div>
 
   <label for="mutacao">Mutação Proposta:</label>
-  <input id="mutacao" type="text" placeholder="Ex: ACTGA">
+  <input id="mutacao" type="text" placeholder="cole o DNA com as suas mutações">
 
   <button onclick="alinhar()">Analisar Mutação</button>
 

@@ -1,9 +1,35 @@
+// Função para gerar DNA alienígena aleatório
+function gerarDNAAlienígena(tamanho) {
+  const letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let dna = "";
+  
+  for (let i = 0; i < tamanho; i++) {
+    dna += letras[Math.floor(Math.random() * letras.length)];
+  }
+  
+  return dna;
+}
+
+// Gerar DNA do alienígena quando a página carregar
+let dnaAlienígena = "";
+window.onload = function() {
+  dnaAlienígena = gerarDNAAlienígena(10);
+  document.getElementById("dna-alienigena").innerText = dnaAlienígena;
+};
+
+// Função para gerar novo DNA alienígena
+function gerarNovoDNA() {
+  dnaAlienígena = gerarDNAAlienígena(10);
+  document.getElementById("dna-alienigena").innerText = dnaAlienígena;
+  document.getElementById("resultado").innerText = ""; // Limpar resultado anterior
+}
+
 function alinhar() {
   const match = 1;
   const mismatch = -1;
   const gap = -2;
 
-  const seq1 = document.getElementById("original").value.toUpperCase();
+  const seq1 = dnaAlienígena; // Usar o DNA do alienígena gerado
   const seq2 = document.getElementById("mutacao").value.toUpperCase();
 
   const n = seq1.length;
