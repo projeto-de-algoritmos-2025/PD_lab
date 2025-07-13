@@ -31,7 +31,6 @@ function alinhar() {
 
   const seq1 = dnaAlienígena; // Usar o DNA do alienígena gerado
   const seq2 = document.getElementById("mutacao").value.toUpperCase();
-
   const n = seq1.length;
   const m = seq2.length;
 
@@ -85,13 +84,139 @@ function alinhar() {
     }
   }
 
-  // Feedback baseado na pontuação final
-  let feedback = "";
+  // Função para determinar o estado da criatura baseado no resultado
+  function determinarEstadoCriatura(score, alin1, alin2) {
+    const porcentagemCompatibilidade = score / Math.min(n, m);
+    
+    // Analisar padrões específicos na mutação
+    const mutacao = alin2.replace(/-/g, ''); // Remove gaps para análise
+    
+    // Verificar se morreu (pontuação muito baixa)
+    if (score < -Math.min(n, m) * 0.8) {
+      return {
+        imagem: "morto.jpeg",
+        estado: "💀 Mutação Letal",
+        descricao: "A criatura não sobreviveu às alterações genéticas. A incompatibilidade foi fatal."
+      };
+    }
+    
+    // Verificar se congelou (muitas letras C, F, I)
+    if ((mutacao.match(/[CFI]/g) || []).length >= mutacao.length * 0.4) {
+      return {
+        imagem: "congelou.jpeg",
+        estado: "🧊 Criatura Congelada",
+        descricao: "A alta concentração de genes frios causou uma redução drástica na temperatura corporal."
+      };
+    }
+    
+    // Verificar se pegou fogo (muitas letras F, H, R)
+    if ((mutacao.match(/[FHR]/g) || []).length >= mutacao.length * 0.4) {
+      return {
+        imagem: "fogo.jpeg",
+        estado: "🔥 Criatura Inflamável",
+        descricao: "Os genes de calor se manifestaram intensamente, causando combustão espontânea."
+      };
+    }
+    
+    // Verificar se derreteu (muitas letras D, L, M)
+    if ((mutacao.match(/[DLM]/g) || []).length >= mutacao.length * 0.4) {
+      return {
+        imagem: "derreteu.jpeg",
+        estado: "🌊 Criatura Derretida",
+        descricao: "A estrutura molecular se tornou instável, resultando em liquefação parcial."
+      };
+    }
+    
+    // Verificar se duplicou (muitas letras repetidas)
+    const letrasDuplicadas = mutacao.match(/(.)\1+/g);
+    if (letrasDuplicadas && letrasDuplicadas.length >= 2) {
+      return {
+        imagem: "duplicado.jpeg",
+        estado: "👥 Criatura Duplicada",
+        descricao: "A repetição genética causou uma divisão celular anômala, criando múltiplas formas."
+      };
+    }
+    
+    // Verificar se desenvolveu asas (muitas letras A, W, Y)
+    if ((mutacao.match(/[AWY]/g) || []).length >= mutacao.length * 0.3) {
+      return {
+        imagem: "asas.jpeg",
+        estado: "🦅 Criatura Alada",
+        descricao: "Desenvolveu estruturas similares a asas, ganhando a capacidade de voo."
+      };
+    }
+    
+    // Verificar se desenvolveu escamas (muitas letras S, K, Z)
+    if ((mutacao.match(/[SKZ]/g) || []).length >= mutacao.length * 0.3) {
+      return {
+        imagem: "escamas.jpeg",
+        estado: "🐍 Criatura Escamosa",
+        descricao: "A pele desenvolveu escamas resistentes, oferecendo proteção adicional."
+      };
+    }
+    
+    // Estado normal/compatível
+    if (score >= 0) {
+      return {
+        imagem: "normal.jpeg",
+        estado: "✅ Criatura Estável",
+        descricao: "A mutação foi bem-sucedida, mantendo a estabilidade genética da criatura."
+      };
+    }
+    
+    // Fallback para mutações instáveis
+    return {
+      imagem: "normal.jpeg",
+      estado: "⚠️ Mutação Instável",
+      descricao: "A criatura apresenta instabilidade genética, mas conseguiu sobreviver."
+    };
+  }
   const score = dp[n][m];
+
+  // Determinar o estado da criatura
+  const estadoCriatura = determinarEstadoCriatura(score, alin1, alin2);
+
+  let feedback = "";
   if (score >= Math.min(n, m) * match * 0.8) feedback = "🧠 Mutação altamente compatível!";
   else if (score >= 0) feedback = "🧬 Mutação moderada. Risco aceitável.";
   else feedback = "⚠️ Mutação instável. Rejeitada pelo organismo.";
 
-  document.getElementById("resultado").innerText =
-    `DNA Original Alinhado:\n${alin1}\nMutação Alinhada:\n${alin2}\n\nPontuação: ${score}\n${feedback}`;
+  // Mostrar resultado no modal
+  const resultadoTexto = `DNA Original Alinhado:\n${alin1}\nMutação Alinhada:\n${alin2}\n\nPontuação: ${score}\n${feedback}`;
+  
+  document.getElementById("modal-resultado").innerText = resultadoTexto;
+  document.getElementById("creature-image").src = `assets/${estadoCriatura.imagem}`;
+  document.getElementById("creature-image").alt = estadoCriatura.estado;
+  
+  // Adicionar informações do estado da criatura
+  document.getElementById("creature-status").innerHTML = `
+    <h3>${estadoCriatura.estado}</h3>
+    <p>${estadoCriatura.descricao}</p>
+  `;
+  
+  abrirModal();
 }
+
+// Funções do modal
+function abrirModal() {
+  document.getElementById("modal").style.display = "block";
+}
+
+function fecharModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+// Fechar modal clicando fora dele
+window.onclick = function(event) {
+  const modal = document.getElementById("modal");
+  if (event.target === modal) {
+    fecharModal();
+  }
+}
+
+// Fechar modal com tecla ESC
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    fecharModal();
+  }
+});

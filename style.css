@@ -29,6 +29,38 @@ button {
 button:hover {
   background-color: #431f63;
 }
+
+.btn-secondary {
+  background-color: #28a745;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+.btn-secondary:hover {
+  background-color: #218838;
+}
+
+.dna-info {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #e8f5e8;
+  border-radius: 8px;
+  border-left: 4px solid #28a745;
+}
+
+.dna-display {
+  font-family: monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #155724;
+  background: white;
+  padding: 0.8rem;
+  border-radius: 5px;
+  margin: 0.5rem 0;
+  letter-spacing: 2px;
+  word-break: break-all;
+}
 .result {
   margin-top: 2rem;
   background: white;
@@ -37,4 +69,126 @@ button:hover {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   white-space: pre-wrap;
   font-family: monospace;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+  animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close:hover {
+  color: #000;
+}
+
+.modal h2 {
+  color: #5a2a82;
+  margin-top: 0;
+  text-align: center;
+  border-bottom: 2px solid #5a2a82;
+  padding-bottom: 10px;
+}
+
+.modal-body {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.creature-container {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.creature-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.creature-status {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 2px solid #dee2e6;
+  text-align: center;
+}
+
+.creature-status h3 {
+  margin: 0 0 10px 0;
+  color: #5a2a82;
+  font-size: 1.2em;
+}
+
+.creature-status p {
+  margin: 0;
+  color: #6c757d;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.result-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+#modal-resultado {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  border-left: 4px solid #5a2a82;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 10% auto;
+  }
+  
+  .modal-body {
+    flex-direction: column;
+  }
+  
+  .creature-container,
+  .result-text {
+    min-width: 100%;
+  }
 }

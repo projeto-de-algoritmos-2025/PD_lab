@@ -21,6 +21,23 @@
 
   <div class="result" id="resultado"></div>
 
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">&times;</span>
+      <h2>🧬 Resultado da Análise Genética</h2>
+      <div class="modal-body">
+        <div class="creature-container">
+          <img id="creature-image" src="assets/normal.jpeg" alt="Criatura" class="creature-image">
+          <div id="creature-status" class="creature-status"></div>
+        </div>
+        <div class="result-text">
+          <div id="modal-resultado"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
