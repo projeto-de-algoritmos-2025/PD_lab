@@ -6,33 +6,86 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🔬 Laboratório de Mutação Genética</h1>
+  <div class="container">
+    <div class="header">
+      <h1>🧬 Laboratório Genético Avançado</h1>
+      <p>Análise de Sequências e Mutações Genéticas usando Algoritmos de Alinhamento</p>
+    </div>
 
-  <div class="dna-info">
-    <label> DNA original:</label>
-    <div id="dna-alienigena" class="dna-display"></div>
-    <button onclick="gerarNovoDNA()" class="btn-secondary">🔄 Gerar Novo DNA</button>
+    <div class="main-content">
+      <div class="dna-section">
+        <div class="section-title">🔬 DNA Original</div>
+        <div id="dna-alienigena" class="dna-display"></div>
+        <div class="tooltip">
+          <button onclick="gerarNovoDNA()" class="btn btn-secondary">🔄 Gerar Novo DNA</button>
+          <span class="tooltiptext">Gera uma nova sequência de DNA aleatória para análise</span>
+        </div>
+      </div>
+
+      <div class="mutation-section">
+        <div class="section-title">⚡ Mutação Proposta</div>
+        <div class="input-group">
+          <label for="mutacao">Insira a sequência mutante:</label>
+          <input id="mutacao" type="text" class="input-field" placeholder="Ex: ATCGGXATCG" maxlength="20">
+        </div>
+        <div style="font-size: 0.9rem; color: #856404; margin-top: 10px;">
+          💡 Dica: Use letras A-Z. Diferentes combinações produzem efeitos únicos!
+        </div>
+      </div>
+
+      <div class="analyze-section">
+        <div class="tooltip">
+          <button onclick="alinhar()" class="btn btn-analyze">🔍 Analisar Mutação</button>
+          <span class="tooltiptext">Executa o algoritmo de alinhamento de sequências</span>
+        </div>
+        <div class="loading" id="loading">
+          <div class="spinner"></div>
+          <p>Analisando sequências genéticas...</p>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <label for="mutacao">Mutação Proposta:</label>
-  <input id="mutacao" type="text" placeholder="cole o DNA com as suas mutações">
-
-  <button onclick="alinhar()">Analisar Mutação</button>
-
-  <div class="result" id="resultado"></div>
 
   <!-- Modal -->
   <div id="modal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="fecharModal()">&times;</span>
-      <h2>🧬 Resultado da Análise Genética</h2>
+      <div class="modal-header">
+        <h2>📊 Resultado da Análise Genética</h2>
+        <span class="close" onclick="fecharModal()">&times;</span>
+      </div>
       <div class="modal-body">
         <div class="creature-container">
-          <img id="creature-image" src="assets/normal.jpeg" alt="Criatura" class="creature-image">
-          <div id="creature-status" class="creature-status"></div>
+          <img id="creature-image" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjhmOWZhIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjE1MCIgcj0iODAiIGZpbGw9IiM2NjdlZWEiLz4KPGV5ZXMgY3g9IjEyNSIgY3k9IjEzMCIgcj0iMTAiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjE3NSIgY3k9IjEzMCIgcj0iMTAiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjE4MCIgcj0iNSIgZmlsbD0id2hpdGUiLz4KPHRleHQgeD0iMTUwIiB5PSIyNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM2NjdlZWEiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiPkNyaWF0dXJhIE5vcm1hbDwvdGV4dD4KPC9zdmc+" alt="Criatura" class="creature-image">
+          <div id="creature-status" class="creature-status">
+            <h3>🔬 Analisando...</h3>
+            <p>Aguardando análise genética</p>
+          </div>
         </div>
         <div class="result-text">
-          <div id="modal-resultado"></div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value" id="score-value">0</div>
+              <div class="stat-label">Pontuação</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="compatibility-value">0%</div>
+              <div class="stat-label">Compatibilidade</div>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+          </div>
+          <div class="alignment-display">
+            <div class="alignment-row">
+              <strong>DNA Original:</strong><br>
+              <span id="aligned-original" class="dna-sequence"></span>
+            </div>
+            <div class="alignment-row">
+              <strong>DNA Mutante:</strong><br>
+              <span id="aligned-mutant" class="dna-sequence"></span>
+            </div>
+          </div>
+          <div class="modal-resultado" id="modal-resultado"></div>
         </div>
       </div>
     </div>
