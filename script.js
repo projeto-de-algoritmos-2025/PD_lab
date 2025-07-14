@@ -224,42 +224,12 @@ function determinarEstadoCriatura(score, alin1, alin2, mutacao) {
     };
   }
   
-  // Verificar se duplicou (padrões repetidos ou sequências espelhadas)
-  let padroesDuplicados = 0;
-  
-  // Verifica se há padrões de 2-3 letras que se repetem
-  for (let tamanho = 2; tamanho <= 3; tamanho++) {
-    for (let i = 0; i <= mutacaoLimpa.length - tamanho * 2; i++) {
-      const padrao = mutacaoLimpa.substring(i, i + tamanho);
-      const resto = mutacaoLimpa.substring(i + tamanho);
-      if (resto.includes(padrao)) {
-        padroesDuplicados++;
-      }
-    }
-  }
-  
-  // Verifica sequências espelhadas (palindrômicas)
-  for (let i = 0; i <= mutacaoLimpa.length - 4; i++) {
-    const segmento = mutacaoLimpa.substring(i, i + 4);
-    const reverso = segmento.split('').reverse().join('');
-    if (segmento === reverso) {
-      padroesDuplicados += 2;
-    }
-  }
-  
-  // Verifica se mais de 50% das letras aparecem mais de uma vez
-  const contadorLetras = {};
-  for (let letra of mutacaoLimpa) {
-    contadorLetras[letra] = (contadorLetras[letra] || 0) + 1;
-  }
-  const letrasRepetidas = Object.values(contadorLetras).filter(count => count > 1).length;
-  const porcentagemRepeticao = letrasRepetidas / Object.keys(contadorLetras).length;
-  
-  if (padroesDuplicados >= 2 || porcentagemRepeticao > 0.5) {
+  // Verificar se duplicou (muitas letras E, J, W)
+  if ((mutacaoLimpa.match(/[EJW]/g) || []).length >= mutacaoLimpa.length * 0.3) {
     return {
       tipo: "duplicado",
       estado: "👥 Criatura Duplicada",
-      descricao: "Padrões genéticos duplicados causaram replicação celular descontrolada, resultando em múltiplas cópias da criatura com variações sutis."
+      descricao: "A presença elevada de genes duplicadores resultou em replicação celular descontrolada, criando múltiplas cópias da criatura."
     };
   }
   
