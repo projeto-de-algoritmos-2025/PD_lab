@@ -450,37 +450,8 @@ document.getElementById("mutacao").addEventListener("input", function(event) {
   event.target.value = value;
 });
 
-// Adicionar efeitos sonoros simulados
-function playSound(type) {
-  // Simulação de feedback sonoro via console
-  if (type === 'generate') {
-    console.log('🔊 DNA Generated!');
-  } else if (type === 'analyze') {
-    console.log('🔊 Analyzing...');
-  } else if (type === 'result') {
-    console.log('🔊 Analysis Complete!');
-  }
-}
-
-// Animação de typing para o resultado
-function typeWriter(element, text, speed = 30) {
-  let i = 0;
-  element.innerHTML = '';
-  
-  function type() {
-    if (i < text.length) {
-      element.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(type, speed);
-    }
-  }
-  
-  type();
-}
-
-// Melhorar a experiência com animações
+//  animações
 document.addEventListener('DOMContentLoaded', function() {
-  // Animação de entrada para elementos
   const elements = document.querySelectorAll('.dna-section, .mutation-section');
   elements.forEach((el, index) => {
     el.style.opacity = '0';

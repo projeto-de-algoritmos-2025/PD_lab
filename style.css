@@ -7,44 +7,47 @@
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: whitesmoke;
   min-height: 100vh;
   color: #333;
   padding: 20px;
   position: relative;
   overflow-x: hidden;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 150%;
-  height: 120%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-  animation: rotate 20s linear infinite;
-  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   overflow: hidden;
-
 }
 
 .header {
-  background: linear-gradient(45deg, #667eea, #764ba2);
+  background: linear-gradient(45deg, rgba(70, 130, 255, 0.7), rgba(102, 126, 234, 0.8));
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
   padding: 30px;
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
 }
 
 @keyframes rotate {
@@ -202,7 +205,9 @@ body::before {
 }
 
 .btn-primary {
-  background: linear-gradient(45deg, #667eea, #764ba2);
+  background: linear-gradient(45deg, rgba(70, 130, 255, 0.9), rgba(102, 126, 234, 0.95));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
   box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
@@ -296,7 +301,9 @@ body::before {
 }
 
 .modal-header {
-  background: linear-gradient(45deg, #667eea, #764ba2);
+  background: linear-gradient(45deg, rgba(70, 130, 255, 0.7), rgba(102, 126, 234, 0.8));
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
   padding: 25px;
   text-align: center;
