@@ -9,7 +9,7 @@
   <div class="container">
     <div class="header">
       <h1>🧬 Laboratório Genético Avançado</h1>
-      <p>Análise de Sequências e Mutações Genéticas usando Algoritmos de Alinhamento</p>
+      <p>Análise de Sequências e Mutações Genéticas usando Algoritmos de Programação Dinâmica</p>
     </div>
 
     <div class="main-content">
@@ -34,9 +34,15 @@
       </div>
 
       <div class="analyze-section">
-        <div class="tooltip">
-          <button onclick="alinhar()" class="btn btn-analyze">🔍 Analisar Mutação</button>
-          <span class="tooltiptext">Executa o algoritmo de alinhamento de sequências</span>
+        <div class="buttons-container">
+          <div class="tooltip">
+            <button onclick="alinhar()" class="btn btn-analyze">🔍 Analisar Mutação</button>
+            <span class="tooltiptext">Executa o algoritmo de alinhamento de sequências</span>
+          </div>
+          <div class="tooltip">
+            <button onclick="abrirManual()" class="btn btn-manual">📚 Consultar manual</button>
+            <span class="tooltiptext">Consultar o guia completo de mutações e resultados</span>
+          </div>
         </div>
         <div class="loading" id="loading">
           <div class="spinner"></div>
@@ -86,6 +92,230 @@
             </div>
           </div>
           <div class="modal-resultado" id="modal-resultado"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Manual Modal -->
+  <div id="manual-modal" class="modal">
+    <div class="modal-content manual-modal-content">
+      <div class="modal-header">
+        <h2>📚 Manual de Experimentos Genéticos</h2>
+        <span class="close" onclick="fecharManual()">&times;</span>
+      </div>
+      <div >
+        <div class="manual-intro">
+          <p>🧬 Este manual contém todas as combinações genéticas conhecidas e seus efeitos nas criaturas. Use essas informações para criar mutações específicas!</p>
+        </div>
+        <div class="manual-grid">
+          <div class="manual-card">
+            <img src="assets/congelado.jpeg" alt="Criatura Congelada" class="manual-image">
+            <div class="manual-info">
+              <h3>🧊 Criatura Congelada</h3>
+              <div class="manual-recipe">
+                <strong>Receita:</strong> Use letras <span class="gene">C, I, E</span> (40% da sequência)
+              </div>
+              <div class="manual-description">
+                Alta concentração de genes criogênicos causa redução drástica na temperatura corporal, resultando em hibernação forçada.
+              </div>
+              <div class="manual-example">
+                <strong>Exemplo:</strong> <code>CICEICEICE</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="manual-card">
+            <img src="assets/fogo.jpeg" alt="Criatura Inflamável" class="manual-image">
+            <div class="manual-info">
+              <h3>🔥 Criatura Inflamável</h3>
+              <div class="manual-recipe">
+                <strong>Receita:</strong> Use letras <span class="gene">F, H, R</span> (40% da sequência)
+              </div>
+              <div class="manual-description">
+                Genes termogênicos se manifestam intensamente, causando combustão espontânea das células. A criatura emite calor extremo.
+              </div>
+              <div class="manual-example">
+                <strong>Exemplo:</strong> <code>FHFRHRFHFR</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="manual-card">
+            <img src="assets/derretido.jpeg" alt="Criatura Derretida" class="manual-image">
+            <div class="manual-info">
+              <h3>🌊 Criatura Derretida</h3>
+              <div class="manual-recipe">
+                <strong>Receita:</strong> Use letras <span class="gene">D, L, M</span> (40% da sequência)
+              </div>
+              <div class="manual-description">
+                A estrutura molecular celular se torna instável, resultando em liquefação parcial. A forma física não é mais sólida.
+              </div>
+              <div class="manual-example">
+                <strong>Exemplo:</strong> <code>DLDMDLDM</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="manual-card">
+            <img src="assets/duplicado.jpeg" alt="Criatura Duplicada" class="manual-image">
+            <div class="manual-info">
+              <h3>👥 Criatura Duplicada</h3>
+              <div class="manual-recipe">
+                <strong>Receita:</strong> Use padrões repetidos ou sequências espelhadas
+              </div>
+              <div class="manual-description">
+                Padrões genéticos duplicados causam replicação celular descontrolada, resultando em múltiplas cópias da criatura.
+              </div>
+              <div class="manual-example">
+                <strong>Exemplo:</strong> <code>ABAB</code> ou <code>ABBA</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="manual-card">
+            <img src="assets/asas.jpeg" alt="Criatura Alada" class="manual-image">
+            <div class="manual-info">
+              <h3>🦅 Criatura Alada</h3>
+              <div class="manual-recipe">
+                <strong>Receita:</strong> Use letras <span class="gene">A, W, Y</span> (30% da sequência)
+              </div>
+              <div class="manual-description">
+                Desenvolve estruturas aerodinâmicas similares a asas, ganhando capacidade de voo e maior mobilidade.
+              </div>
+              <div class="manual-example">
+                <strong>Exemplo:</strong> <code>AWAYWAY</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="manual-card">
+            <img src="assets/escamas.jpeg" alt="Criatura Escamosa" class="manual-image">
+            <div class="manual-info">
+              <h3>🐍 Criatura Escamosa</h3>
+              <div class="manual-recipe">
+                <strong>Receita:</strong> Use letras <span class="gene">S, K, Z</span> (30% da sequência)
+              </div>
+              <div class="manual-description">
+                A pele desenvolve escamas quitinosas resistentes, oferecendo proteção adicional contra ameaças externas.
+              </div>
+              <div class="manual-example">
+                <strong>Exemplo:</strong> <code>SKZSKZ</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="manual-card">
+            <img src="assets/tentaculos.jpeg" alt="Criatura Tentacular" class="manual-image">
+            <div class="manual-info">
+              <h3>🐙 Criatura Tentacular</h3>
+              <div class="manual-recipe">
+                <strong>Receita:</strong> Use letras <span class="gene">T, U, V</span> (30% da sequência)
+              </div>
+              <div class="manual-description">
+                Desenvolve apêndices flexíveis semelhantes a tentáculos, aumentando capacidade de manipulação e movimento.
+              </div>
+              <div class="manual-example">
+                <strong>Exemplo:</strong> <code>TUVTUV</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="manual-card">
+            <img src="assets/cristalino.jpeg" alt="Criatura Cristalina" class="manual-image">
+            <div class="manual-info">
+              <h3>💎 Criatura Cristalina</h3>
+              <div class="manual-recipe">
+                <strong>Receita:</strong> Use letras <span class="gene">Q, X, Z</span> (30% da sequência)
+              </div>
+              <div class="manual-description">
+                A estrutura celular se mineraliza, formando cristais orgânicos que conferem resistência e refração luminosa.
+              </div>
+              <div class="manual-example">
+                <strong>Exemplo:</strong> <code>QXZQXZ</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="manual-card">
+            <img src="assets/psiquico.jpeg" alt="Criatura Psíquica" class="manual-image">
+            <div class="manual-info">
+              <h3>🧠 Criatura Psíquica</h3>
+              <div class="manual-recipe">
+                <strong>Receita:</strong> Use letras <span class="gene">P, N, O</span> (30% da sequência)
+              </div>
+              <div class="manual-description">
+                Desenvolve habilidades telepáticas e psicocinéticas, com capacidade de comunicação mental avançada.
+              </div>
+              <div class="manual-example">
+                <strong>Exemplo:</strong> <code>PONPON</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="manual-card">
+            <img src="assets/gigante.jpeg" alt="Criatura Gigante" class="manual-image">
+            <div class="manual-info">
+              <h3>🦣 Criatura Gigante</h3>
+              <div class="manual-recipe">
+                <strong>Receita:</strong> Use letras <span class="gene">G, B, J</span> (30% da sequência)
+              </div>
+              <div class="manual-description">
+                Hormônios de crescimento descontrolados causam gigantismo, resultando em tamanho desproporcional.
+              </div>
+              <div class="manual-example">
+                <strong>Exemplo:</strong> <code>GBJGBJ</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="manual-card">
+            <img src="assets/instavel.jpeg" alt="Criatura Instável" class="manual-image">
+            <div class="manual-info">
+              <h3>⚡ Criatura Instável</h3>
+              <div class="manual-recipe">
+                <strong>Receita:</strong> Sequências muito diferentes do DNA original
+              </div>
+              <div class="manual-description">
+                Incompatibilidade genética severa resulta em instabilidade molecular e energia descontrolada.
+              </div>
+              <div class="manual-example">
+                <strong>Exemplo:</strong> Sequência com baixa compatibilidade
+              </div>
+            </div>
+          </div>
+
+          <div class="manual-card">
+            <img src="assets/morto.jpeg" alt="Criatura Morta" class="manual-image">
+            <div class="manual-info">
+              <h3>💀 Criatura Morta</h3>
+              <div class="manual-recipe">
+                <strong>Receita:</strong> Sequências extremamente incompatíveis
+              </div>
+              <div class="manual-description">
+                Incompatibilidade genética total resulta em falha sistêmica e morte celular completa.
+              </div>
+              <div class="manual-example">
+                <strong>Exemplo:</strong> Sequência com compatibilidade muito baixa
+              </div>
+            </div>
+          </div>
+
+          <div class="manual-card">
+            <img src="assets/normal.jpeg" alt="Criatura Normal" class="manual-image">
+            <div class="manual-info">
+              <h3>🧬 Criatura Normal</h3>
+              <div class="manual-recipe">
+                <strong>Receita:</strong> Sequências compatíveis sem padrões específicos
+              </div>
+              <div class="manual-description">
+                Mutação estável e compatível que não altera significativamente as características originais.
+              </div>
+              <div class="manual-example">
+                <strong>Exemplo:</strong> Sequência balanceada
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -450,6 +450,31 @@ document.getElementById("mutacao").addEventListener("input", function(event) {
   event.target.value = value;
 });
 
+// Funções para controlar o modal do manual
+function abrirManual() {
+  document.getElementById('manual-modal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function fecharManual() {
+  document.getElementById('manual-modal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Fechar modal do manual ao clicar fora
+window.onclick = function(event) {
+  const modal = document.getElementById('modal');
+  const manualModal = document.getElementById('manual-modal');
+  
+  if (event.target === modal) {
+    fecharModal();
+  }
+  
+  if (event.target === manualModal) {
+    fecharManual();
+  }
+}
+
 //  animações
 document.addEventListener('DOMContentLoaded', function() {
   const elements = document.querySelectorAll('.dna-section, .mutation-section');
