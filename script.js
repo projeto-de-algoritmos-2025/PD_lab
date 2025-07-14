@@ -113,7 +113,7 @@ function processarAlinhamento(mutacao) {
   const compatibilidade = Math.max(0, Math.round((score / maxScore) * 100));
 
   // Determinar o estado da criatura
-  const estadoCriatura = determinarEstadoCriatura(score, alin1, alin2, mutacao);
+  const estadoCriatura = determinarEstadoCriatura(score, alin1, alin2, mutacao, compatibilidade);
 
   // Gerar feedback
   let feedback = "";
@@ -180,11 +180,7 @@ function colorirSequencia(seq1, seq2, isOriginal) {
   return resultado;
 }
 
-function determinarEstadoCriatura(score, alin1, alin2, mutacao) {
-  const porcentagemCompatibilidade = score / Math.min(alin1.length, alin2.length);
-  const maxScore = Math.min(alin1.length, alin2.length) * 2; // match = 2
-  const compatibilidade = Math.max(0, Math.round((score / maxScore) * 100));
-  
+function determinarEstadoCriatura(score, alin1, alin2, mutacao, compatibilidade) {
   // Analisar padrões específicos na mutação
   const mutacaoLimpa = mutacao.replace(/-/g, '');
   
@@ -287,8 +283,8 @@ function determinarEstadoCriatura(score, alin1, alin2, mutacao) {
     };
   }
   
-  // Estado normal/compatível
-  if (score >= Math.min(alin1.length, alin2.length) * 0.8) {
+  // Estado normal/compatível (alta compatibilidade)
+  if (compatibilidade >= 80) {
     return {
       tipo: "normal",
       estado: "✅ Criatura Estável",
