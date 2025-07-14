@@ -113,7 +113,7 @@ function processarAlinhamento(mutacao) {
   const compatibilidade = Math.max(0, Math.round((score / maxScore) * 100));
 
   // Determinar o estado da criatura
-  const estadoCriatura = determinarEstadoCriatura(score, alin1, alin2, mutacao, compatibilidade);
+  const estadoCriatura = determinarEstadoCriatura(score, mutacao, compatibilidade);
 
   // Gerar feedback
   let feedback = "";
@@ -123,8 +123,8 @@ function processarAlinhamento(mutacao) {
   else feedback = "☠️ Mutação incompatível. Risco de falha genética.";
 
   // Colorir sequências alinhadas
-  const coloredOriginal = colorirSequencia(alin1, alin2, true);
-  const coloredMutant = colorirSequencia(alin2, alin1, false);
+  const coloredOriginal = colorirSequencia(alin1, alin2);
+  const coloredMutant = colorirSequencia(alin2, alin1);
 
   // Ocultar loading
   document.getElementById("loading").style.display = "none";
@@ -163,7 +163,7 @@ function processarAlinhamento(mutacao) {
   abrirModal();
 }
 
-function colorirSequencia(seq1, seq2, isOriginal) {
+function colorirSequencia(seq1, seq2) {
   let resultado = "";
   for (let i = 0; i < seq1.length; i++) {
     const char1 = seq1[i];
@@ -180,7 +180,7 @@ function colorirSequencia(seq1, seq2, isOriginal) {
   return resultado;
 }
 
-function determinarEstadoCriatura(score, alin1, alin2, mutacao, compatibilidade) {
+function determinarEstadoCriatura(score, mutacao, compatibilidade) {
   // Analisar padrões específicos na mutação
   const mutacaoLimpa = mutacao.replace(/-/g, '');
   
@@ -193,8 +193,8 @@ function determinarEstadoCriatura(score, alin1, alin2, mutacao, compatibilidade)
     };
   }
   
-  // Verificar se congelou (muitas letras C, F, I)
-  if ((mutacaoLimpa.match(/[CFI]/g) || []).length >= mutacaoLimpa.length * 0.4) {
+  // Verificar se congelou (muitas letras C, I, E)
+  if ((mutacaoLimpa.match(/[CIE]/g) || []).length >= mutacaoLimpa.length * 0.4) {
     return {
       tipo: "congelado",
       estado: "🧊 Criatura Congelada",
