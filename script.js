@@ -182,12 +182,14 @@ function colorirSequencia(seq1, seq2, isOriginal) {
 
 function determinarEstadoCriatura(score, alin1, alin2, mutacao) {
   const porcentagemCompatibilidade = score / Math.min(alin1.length, alin2.length);
+  const maxScore = Math.min(alin1.length, alin2.length) * 2; // match = 2
+  const compatibilidade = Math.max(0, Math.round((score / maxScore) * 100));
   
   // Analisar padrões específicos na mutação
   const mutacaoLimpa = mutacao.replace(/-/g, '');
   
-  // Verificar se morreu (pontuação muito baixa)
-  if (score < -mutacaoLimpa.length * 0.8) {
+  // Verificar se morreu (0% de compatibilidade ou pontuação muito baixa)
+  if (compatibilidade === 0 || score < -mutacaoLimpa.length * 0.8) {
     return {
       tipo: "morto",
       estado: "💀 Mutação Letal",
@@ -316,7 +318,7 @@ function determinarEstadoCriatura(score, alin1, alin2, mutacao) {
   }
   
   // Estado normal/compatível
-  if (score >= 0) {
+  if (score >= Math.min(alin1.length, alin2.length) * 0.8) {
     return {
       tipo: "normal",
       estado: "✅ Criatura Estável",
