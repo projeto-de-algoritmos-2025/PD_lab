@@ -22,7 +22,7 @@ O sistema analisa a compatibilidade genética entre as sequências e determina o
 
 ## Vídeo de Apresentação
 
-[Link da Apresentação](https://projeto-de-algoritmos-2025.github.io/PD_lab/)
+[Link da Apresentação](https://www.youtube.com/watch?v=Um_JMXWRztE)
 
 ## Acesso ao deploy da aplicação
 
@@ -82,7 +82,7 @@ python -m http.server 8000
 - **Normal**: Sequências com boa compatibilidade
 - **Congelado**: Use letras C, F, I (ex: "CCFIFICI")
 - **Fogo**: Use letras F, H, R (ex: "FFHRHHRR")
-- **Duplicado**: Use padrões repetidos (ex: "ABCABC", "XYYX")
+- **Duplicado**: Use letras E, J, W (ex: "EEEJJJWWW")
 - **Asas**: Use letras A, W, Y (ex: "AWWYAYWA")
 - **Tentáculos**: Use letras T, U, V (ex: "TUVTUV")
 - **Cristalino**: Use letras Q, X, Z (ex: "QXZQXZ")
