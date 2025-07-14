@@ -30,6 +30,15 @@ O sistema analisa a compatibilidade genética entre as sequências e determina o
 
 ## Screenshots
 ### Tela Principal
+![home](assets/home.png)
+### Alguns resultados
+![alt text](assets/estavel.png)
+![alt text](assets/letal.png)
+![alt text](assets/psiquico.png)
+![alt text](assets/congelada.png)
+### Manual de experimentos genéticos
+![manual](assets/manual.png)
+
 
 ## Instalação 
 **Linguagem**: HTML5, CSS3 e JavaScript (ES6+)<br>
@@ -58,7 +67,7 @@ python -m http.server 8000
 ```
 
 ## Uso 
-1. **Geração de DNA**: Ao carregar a página, uma sequência de DNA de 12 caracteres é gerada automaticamente
+1. **Geração de DNA**: Ao carregar a página, uma sequência de DNA de 10-12 caracteres é gerada automaticamente
 2. **Nova Sequência**: Use o botão "🔄 Gerar Novo DNA" para criar uma nova sequência base
 3. **Inserir Mutação**: Digite uma sequência de letras (A-Z) no campo "Mutação Proposta" (máximo 20 caracteres)
 4. **Analisar**: Clique em "🔍 Analisar Mutação" para processar o alinhamento
